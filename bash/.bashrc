@@ -1,3 +1,8 @@
+if [ "$TERM" == "xterm" ]
+then filebrowser='nautilus'
+else filebrowser='explorer'
+fi
+
 alias ..='cd ..'
 alias ...='cd ../../'
 alias ....='cd ../../../'
@@ -5,6 +10,7 @@ alias .....='cd ../../../../'
 alias ......='cd ../../../../../'
 alias bg='gvim ~/dotfiles/bash/.bashrc'
 alias bl='gvim ~/.bashrc'
+alias e='$filebrowser . &'
 alias ga='git add -p'
 alias gb='git branch -a'
 alias gc='git commit -m'
@@ -23,8 +29,7 @@ alias reload='source $HOME/.bashrc 1>/dev/null'
 alias v='gvim'
 alias vg='gvim ~/.dotfiles/vim/.vimrc'
 
-function cl () 
-{
+function cl() {
   cd $1
   ls
 }
