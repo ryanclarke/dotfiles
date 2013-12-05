@@ -10,16 +10,18 @@ alias .....='cd ../../../../'
 alias ......='cd ../../../../../'
 alias bg='gvim ~/dotfiles/bash/.bashrc'
 alias bl='gvim ~/.bashrc'
+alias c-='cd -'
 alias e='$filebrowser . &'
+alias g-='git checkout -'
 alias ga='git add -p'
 alias gb='git branch -a'
 alias gc='git commit -m'
 alias gf='git fetch'
 alias gh='git log --graph --full-history --all --color --pretty=format:"%Cred%h%Creset %ad %C(bold blue)<%an>%Creset%C(yellow)%d%Creset %s" --date=short'
-alias gl='git checkout -'
 alias gm='git checkout master'
 alias gp='git pull'
 alias gs='git status'
+alias gt='git tag -l'
 alias h='cd ~'
 alias j='cd C:/Projects/fcu-mobile-android-tablet'
 alias ll='ls -lAh --color'
@@ -42,7 +44,7 @@ function gum() {
   if [ $BRANCHNAME != master ]; then git checkout $BRANCHNAME; fi
 }
 
-function mcd() {
+function cn() {
   mkdir -p "$1" && cd "$1";
 }
 
