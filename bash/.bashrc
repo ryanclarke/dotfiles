@@ -1,6 +1,6 @@
 if [ "$TERM" == "xterm" ]
-then filebrowser='nautilus'
-else filebrowser='explorer'
+  then filebrowser='nautilus'
+  else filebrowser='explorer'
 fi
 
 alias ..='cd ..'
@@ -14,12 +14,17 @@ alias c-='cd -'
 alias e='$filebrowser . &'
 alias g-='git checkout -'
 alias ga='git add -p'
+alias gac='git commit -am'
 alias gb='git branch -a'
 alias gc='git commit -m'
+alias gd='git diff'
+alias gdt='git difftool'
 alias gf='git fetch'
-alias gh='git log --graph --full-history --all --color --pretty=format:"%Cred%h%Creset %ad %C(bold blue)<%an>%Creset%C(yellow)%d%Creset %s" --date=short'
+alias ghh='git log --graph --full-history --all --color --pretty=format:"%Cred%h%Creset %ad %C(bold blue)<%an>%Creset%C(yellow)%d%Creset %s" --date=short'
+alias gk='gitk'
 alias gm='git checkout master'
 alias gp='git pull'
+alias grm='git rebase master'
 alias gs='git status'
 alias gt='git tag -l'
 alias h='cd ~'
@@ -33,7 +38,33 @@ alias vg='gvim ~/.dotfiles/vim/.vimrc'
 
 function cl() {
   cd $1
-  ls
+  ll
+}
+
+function gff() {
+  if [ $BRANCHNAME != master ]; then gm; fi
+  git merge --ff -
+  gh 10
+}
+
+function gh() {
+  if [ -n "$1" ]
+    then commitcount="$1"
+    else commitcount='20'
+  fi
+  echo
+  echo "####### LAST $commitcount COMMITS #######"
+  echo
+  ghh | head -n $commitcount | less -E
+}
+
+function gsave() {
+  if [ -n "$1" ] ; then
+    gac "$1"
+    gum
+    grm
+    gh 10
+  fi
 }
 
 function gum() {
