@@ -11,6 +11,7 @@ alias ......='cd ../../../../../'
 alias bg='gvim ~/dotfiles/bash/.bashrc'
 alias bl='gvim ~/.bashrc'
 alias c-='cd -'
+alias df='cd ~/dotfiles'
 alias e='$filebrowser . &'
 alias g-='git checkout -'
 alias ga='git add -p'
@@ -32,13 +33,16 @@ alias j='cd C:/Projects/fcu-mobile-android-tablet'
 alias ll='ls -lAh --color'
 alias ls='ls -F --color --show-control-chars'
 alias q='exit'
-alias reload='source $HOME/.bashrc 1>/dev/null'
 alias v='gvim'
 alias vg='gvim ~/.dotfiles/vim/.vimrc'
 
 function cl() {
   cd $1
   ll
+}
+
+function cn() {
+  mkdir -p "$1" && cd "$1";
 }
 
 function gff() {
@@ -56,6 +60,7 @@ function gh() {
   echo "####### LAST $commitcount COMMITS #######"
   echo
   ghh | head -n $commitcount | less -E
+  echo
 }
 
 function gsave() {
@@ -75,11 +80,13 @@ function gum() {
   if [ $BRANCHNAME != master ]; then git checkout $BRANCHNAME; fi
 }
 
-function cn() {
-  mkdir -p "$1" && cd "$1";
-}
-
 function ra() {
   eval $1
   reload
 }
+
+function reload() {
+  unalias -a 
+  source $HOME/.bashrc 1>/dev/null
+}
+
