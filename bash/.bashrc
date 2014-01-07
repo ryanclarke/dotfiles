@@ -22,12 +22,14 @@ alias gd='git diff'
 alias gdt='git difftool'
 alias gf='git fetch'
 alias ghh='git log --graph --full-history --all --color --pretty=format:"%Cred%h%Creset %ad %C(bold blue)<%an>%Creset%C(yellow)%d%Creset %s" --date=short'
-alias gk='gitk'
+alias gk='gitk --all'
+alias glb='git shortlog -sn'
 alias gm='git checkout master'
 alias gp='git pull'
 alias grm='git rebase master'
 alias gs='git status'
 alias gt='git tag -l'
+alias gz='git checkout zzz'
 alias h='cd ~'
 alias j='cd C:/Projects/fcu-mobile-android-tablet'
 alias ll='ls -lAh --color'
@@ -46,9 +48,11 @@ function cn() {
 }
 
 function gff() {
-  if [ $BRANCHNAME != master ]; then gm; fi
-  git merge --ff -
-  gh 10
+  if [ $BRANCHNAME != master ]; then
+    gm
+    git merge --ff -
+    gh 10
+  fi
 }
 
 function gh() {
