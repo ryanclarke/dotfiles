@@ -36,7 +36,7 @@ alias ll='ls -lAh --color'
 alias ls='ls -F --color --show-control-chars'
 alias q='exit'
 alias v='gvim'
-alias vg='gvim ~/.dotfiles/vim/.vimrc'
+alias vg='gvim ~/dotfiles/vim/.vimrc'
 
 function cl() {
   cd $1
