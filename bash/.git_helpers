@@ -1,0 +1,84 @@
+alias g-='git checkout -'
+alias ga='git add -p'
+alias gac='git commit -am'
+alias gb='git branch -a'
+alias gc='git commit -m'
+alias gd='git diff'
+alias gdm='git diff --stat master'
+alias gdt='git difftool'
+alias gf='git fetch'
+alias ghh='git log --graph --full-history --all --color --pretty=format:"%Cred%h%Creset %ad %C(bold blue)<%an>%Creset%C(yellow)%d%Creset %s" --date=short'
+alias gk='gitk --all'
+alias gm='git checkout master'
+alias gp='git pull --rebase'
+alias grm='git rebase master'
+alias gs='git status'
+alias gt='git tag -l'
+alias gz='git checkout zzz'
+
+function gff() {
+  if [ $BRANCHNAME != master ]; then
+    gm
+    git merge --ff -
+    gh 10
+  fi
+}
+
+function gh() {
+  if [ -n "$1" ]
+    then commitcount="$1"
+    else commitcount='20'
+  fi
+  echo
+  echo "####### LAST $commitcount COMMITS #######"
+  echo
+  ghh | head -n $commitcount | less -E
+  echo
+}
+
+function gsave() {
+  if [ -n "$1" ] ; then
+    gac "$1"
+    gum
+    grm
+    gh 10
+  fi
+}
+
+# accepts: gstats [number [unit of time]]
+# returns list: username added removed difference
+function gstats() {
+  if [ -n "$1" ]; then
+    unit="day"
+    if [ -n "$2" ] ; then unit="$2" ; fi
+    ago="$1 $unit ago"
+    since="--since=\""$(date --date="$ago" -I)"\""
+  fi
+
+  git_history=$(git log --pretty=format:"%h %h %h %h %ae" $since --numstat | sed 's/@sep.com//' | awk '{ if ($4) hashuser = $4 " " $5; else printf "%s %d %d %d\n", hashuser, $1, $2, $1-$2 }')
+  
+  git_change_log=$(for qq in $(gusers); do
+    echo "$git_history" | grep ${qq} | awk '{ add += $3; remove += $4; total += $5 } END { printf "%-10s %6d %6d %6d\n", $2, add, remove, total }'
+  done)
+
+  echo "$git_change_log" | sort -gr -k 2
+
+  ago=""
+  git_change_log=""
+  git_history=""
+  since=""
+  unit=""
+}
+
+function gum() {
+  BRANCHNAME=`git rev-parse --abbrev-ref HEAD`
+  if [ $BRANCHNAME != master ]; then gm; fi
+  gf
+  gp
+  if [ $BRANCHNAME != master ]; then git checkout $BRANCHNAME; fi
+}
+
+#returns list: username
+function gusers() {
+  git shortlog -es | sed -e 's/.*<//' -e 's/@sep.com>//'
+}
