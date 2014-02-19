@@ -54,7 +54,7 @@ function gchanges() {
     since="--since=\""$(date --date="$ago" -I)"\""
   fi
 
-  git log --pretty=format:"%h %h %ad %h %ae" --date=short $since --numstat | sed 's/@sep.com//' | awk '{ if ($4) commitdetails = $4 " " $3 " " $5; else printf "%s %d %d %d\n", commitdetails, $1, $2, $1-$2 }'
+  git log --pretty=format:"%h %at %ad %ae" --date=short $since --numstat | sed 's/@sep.com//' | awk '{ if ($4) commitdetails = $1 " " $2 " " $3 " " $4; else printf "%s %d %d %d\n", commitdetails, $1, $2, $1-$2 }'
 
   ago=""
   since=""
@@ -64,10 +64,12 @@ function gchanges() {
 # accepts: gstime [number [unit of time]]
 # returns list: username added removed difference
 function gstime() {
-  git_change_log=$(gchanges $@)
+  git_change_log=$(gchanges $@ | awk '{ print strftime("%Y-%U", $2), $5, $6, $7 }')
+  
+  printf "\n\e[0;36m%-10s %6s %6s %6s\e[0m\n" Week Add Remove Total
 
-  git_time_changes=$(for day in $(echo "$git_change_log" | awk '{ print $2 }' | sort | uniq); do
-  echo "$git_change_log" | grep ${day} | awk '{ add += $4; remove += $5; total += $6 } END { printf "%-10s %6d %6d %6d\n", $2, add, remove, total }'
+  git_time_changes=$(for week in $(echo "$git_change_log" | awk '{ print $1 }' | sort | uniq); do
+  echo "$git_change_log" | grep ${week} | awk '{ add += $2; remove += $3; total += $4 } END { printf "%-10s %6d %6d %6d\n", $1, add, remove, total }'
   done)
 
   echo "$git_time_changes"
@@ -79,10 +81,12 @@ function gstime() {
 # accepts: gsuser [number [unit of time]]
 # returns list: username added removed difference
 function gsuser() {
-  git_change_log=$(gchanges $@)
+  git_change_log=$(gchanges $@ | awk '{ print $4, $5, $6, $7 }')
 
-  git_user_changes=$(for committer in $(echo "$git_change_log" | awk '{ print $3 }' | sort | uniq); do
-  echo "$git_change_log" | grep ${committer} | awk '{ add += $4; remove += $5; total += $6 } END { printf "%-10s %6d %6d %6d\n", $3, add, remove, total }'
+  printf "\n\e[0;36m%-10s %6s %6s %6s\e[0m\n" Committer Add Remove Total
+
+  git_user_changes=$(for committer in $(echo "$git_change_log" | awk '{ print $1 }' | sort | uniq); do
+  echo "$git_change_log" | grep ${committer} | awk '{ add += $2; remove += $3; total += $4 } END { printf "%-10s %6d %6d %6d\n", $1, add, remove, total }'
   done)
 
   echo "$git_user_changes" | sort -gr -k 2
