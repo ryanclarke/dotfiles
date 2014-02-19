@@ -11,7 +11,7 @@ alias ...='cd ../../'
 alias ....='cd ../../../'
 alias .....='cd ../../../../'
 alias ......='cd ../../../../../'
-alias bg='gvim ~/dotfiles/bash/.bashrc'
+alias ba='gvim ~/dotfiles/bash/.bashrc'
 alias bl='gvim ~/.bashrc'
 alias c-='cd -'
 alias df='cd ~/dotfiles'
@@ -22,7 +22,7 @@ alias ll='ls -lAh --color'
 alias ls='ls -F --color --show-control-chars'
 alias q='exit'
 alias v='gvim'
-alias vg='gvim ~/dotfiles/vim/.vimrc'
+alias va='gvim ~/dotfiles/vim/.vimrc'
 
 function cl() {
   cd $1
