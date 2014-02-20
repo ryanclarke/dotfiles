@@ -51,6 +51,8 @@ nnoremap <leader><space> :noh<cr>
 nnoremap <tab> %
 vnoremap <tab> %
 
+nnoremap <leader>ww gwip
+
 nnoremap <up> <nop>
 nnoremap <down> <nop>
 nnoremap <left> <nop>
@@ -68,3 +70,16 @@ map <C-n> :NERDTreeToggle<CR>
 
 autocmd VimEnter * Helptags
 autocmd FocusLost * :wa
+
+function! Set_markdown_settings()
+  setlocal filetype=markdown
+  setlocal textwidth=79
+  setlocal colorcolumn=+1
+endfunction
+function! Unset_markdown_settings()
+  setlocal textwidth=0
+  setlocal colorcolumn=""
+endfunction
+autocmd BufNewFile,BufEnter *.{md} call Set_markdown_settings()
+autocmd BufLeave *.{md} call Unset_markdown_settings()
+
