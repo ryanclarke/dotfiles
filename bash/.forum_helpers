@@ -1,4 +1,3 @@
-
 function sf() {
   echo
   printf "\e[1;33m%6d  %s\e[0m\n" $(git log --oneline | wc -l ) "Total Commits"
@@ -12,4 +11,12 @@ function sf() {
   printf "%6d  %s\n" $(grep -r "^[[:space:]]*[[:alpha:]]* class" FCUMobile/test/ | wc -l) "Unit test classes"
   printf "%6d  %s\n" $(grep -r "^[[:space:]]*[[:alpha:]]* class" FCUMobileInstrumentationTests/src/ | wc -l) "Instrumentation test classes"
   echo
+}
+
+function jbh() {
+  f_build_name="fcu-mobile-android-spoon"
+  printf "\n\e[4;31m%s\e[0m\n" "Fetching $f_build_name build history from jenkins"
+  f_history=$(curl http://jenkins/job/$f_build_name/buildHistory/all)
+  printf "\n\e[4;31m%7s %s\e[0m\n" Count Results
+  echo "$f_history" | sed 's_^.*16x16/\(\w\{3,14\}\).*$_\1_' | sed '/.\{15,\}/d' | sed 's_\(\w*\).*_\1 _' | awk 'NF > 0' | sort | uniq -c | sort -r
 }
