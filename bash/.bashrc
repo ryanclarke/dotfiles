@@ -14,6 +14,7 @@ alias ......='cd ../../../../../'
 alias ba='gvim ~/dotfiles/bash/.bashrc'
 alias bl='gvim ~/.bashrc'
 alias c-='cd -'
+alias code='cd ~/Documents/Code'
 alias df='cd ~/dotfiles'
 alias e='$filebrowser . &'
 alias h='cd ~'
@@ -23,6 +24,7 @@ alias ls='ls -F --color --show-control-chars'
 alias q='exit'
 alias v='gvim'
 alias va='gvim ~/dotfiles/vim/.vimrc'
+alias x='$filebrowser'
 
 function cl() {
   cd $1

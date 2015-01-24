@@ -1,6 +1,3 @@
-if exists("*pathogen#infect")
-    execute pathogen#infect()
-endif
 syntax on
 filetype plugin indent on
 
@@ -66,20 +63,17 @@ nnoremap k gk
 
 nnoremap ; :
 
-map <C-n> :NERDTreeToggle<CR>
+map <leader>n :NERDTreeToggle<CR>
+
+map <leader><up> <C-w><up>
+map <leader><down> <C-w><down>
+map <leader><left> <C-w><left>
+map <leader><right> <C-w><right>
+
+map <leader>b :ls<CR>:b<space>
+map <leader>p <Esc><Esc>orequire 'pry'; binding.pry<Esc>
 
 autocmd VimEnter * Helptags
 autocmd FocusLost * :wa
 
-function! Set_markdown_settings()
-  setlocal filetype=markdown
-  setlocal textwidth=79
-  setlocal colorcolumn=+1
-endfunction
-function! Unset_markdown_settings()
-  setlocal textwidth=0
-  setlocal colorcolumn=""
-endfunction
-autocmd BufNewFile,BufEnter *.{md} call Set_markdown_settings()
-autocmd BufLeave *.{md} call Unset_markdown_settings()
 
