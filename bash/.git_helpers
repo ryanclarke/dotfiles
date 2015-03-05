@@ -7,7 +7,7 @@ alias gd='git diff'
 alias gdm='git diff --stat master'
 alias gdt='git difftool'
 alias gf='git fetch'
-alias ghh='git log --graph --full-history --all --color --pretty=format:"%Cred%h%Creset %ad %C(bold blue)<%ae>%Creset%C(yellow)%d%Creset %s" --date=short'
+alias ghh='git log --graph --full-history --color --pretty=format:"%Cred%h%Creset %ad %C(bold blue)<%ae>%Creset%C(yellow)%d%Creset %s" --date=short'
 alias glb='git shortstat -s'
 alias gk='gitk --all'
 alias gm='git checkout master'
@@ -27,6 +27,18 @@ function gff() {
 }
 
 function gh() {
+  if [ -n "$1" ]
+    then commitcount="$1"
+    else commitcount='20'
+  fi
+  echo
+  echo "####### LAST $commitcount COMMITS #######"
+  echo
+  ghh --all | head -n $commitcount | less -E
+  echo
+}
+
+function ghb() {
   if [ -n "$1" ]
     then commitcount="$1"
     else commitcount='20'
@@ -94,6 +106,14 @@ function gsuser() {
 
   git_change_log=""
   git_user_changes=""
+}
+
+function gscommit() {
+  echo
+  printf "\e[1;33m%6d  %s\e[0m\n" $(git log --oneline | wc -l ) "Total Commits"
+  echo "   ---  -------------"
+  git shortlog -se | sed -e 's/[^0-9]*</ /' -e 's/@sep.com>//' | awk '{ printf "%6d  %s\n", $1, $2 }' | sort -gr
+  echo
 }
 
 function gschart() {

@@ -1,5 +1,5 @@
 . ~/dotfiles/bash/.git_helpers
-. ~/dotfiles/bash/.forum_helpers
+. ~/dotfiles/bash/.t56_helpers
 
 if [ "$TERM" == "xterm" ]
   then filebrowser='nautilus'
@@ -14,6 +14,7 @@ alias ......='cd ../../../../../'
 alias ba='gvim ~/dotfiles/bash/.bashrc'
 alias bl='gvim ~/.bashrc'
 alias c-='cd -'
+alias cdd='cd /c/dev/'
 alias code='cd ~/Documents/Code'
 alias df='cd ~/dotfiles'
 alias e='$filebrowser . &'
