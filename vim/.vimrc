@@ -73,6 +73,8 @@ map <leader><right> <C-w><right>
 map <leader>b :ls<CR>:b<space>
 map <leader>p <Esc><Esc>orequire 'pry'; binding.pry<Esc>
 
+autocmd BufNewFile,BufReadPost *.md set filetype=markdown
+
 autocmd VimEnter * Helptags
 autocmd FocusLost * :wa
 
