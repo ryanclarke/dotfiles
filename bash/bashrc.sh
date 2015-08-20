@@ -1,3 +1,5 @@
+#!/bin/sh
+
 . ~/dotfiles/bash/os_vars.sh
 . ~/dotfiles/bash/git_helpers.sh
 

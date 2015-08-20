@@ -1,3 +1,5 @@
+#!/bin/sh
+
 alias g-='git checkout -'
 alias ga='git add -p'
 alias gac='git commit -am'

@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 bashrc_caller="if [ -f ~/dotfiles/bash/bashrc.sh ]; then . ~/dotfiles/bash/bashrc.sh; fi"
 first_line=`head -n 1 ~/.bashrc`
