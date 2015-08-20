@@ -1,4 +1,4 @@
-. ~/dotfiles/bash/.git_helpers.sh
+. ~/dotfiles/bash/git_helpers.sh
 
 if [ "$TERM" == "xterm" ]
   then filebrowser='nautilus'
@@ -12,7 +12,7 @@ alias ...='cd ../../'
 alias ....='cd ../../../'
 alias .....='cd ../../../../'
 alias ......='cd ../../../../../'
-alias ba='__rsc__vim ~/dotfiles/bash/.bashrc &'
+alias ba='__rsc__vim ~/dotfiles/bash/bashrc.sh &'
 alias bl='__rsc__vim ~/.bashrc &'
 alias c-='cd -'
 alias cdd='cd /c/dev/'
@@ -23,7 +23,7 @@ alias ll='ls -lAh --color'
 alias ls='ls -F --color --show-control-chars'
 alias q='exit'
 alias v='__rsc__vim'
-alias va='__rsc__vim ~/dotfiles/vim/.vimrc &'
+alias va='__rsc__vim ~/dotfiles/vim/vimrc.vim &'
 alias x='$filebrowser'
 
 function cl() {
