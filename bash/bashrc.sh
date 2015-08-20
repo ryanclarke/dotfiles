@@ -1,11 +1,5 @@
+. ~/dotfiles/bash/os_vars.sh
 . ~/dotfiles/bash/git_helpers.sh
-
-if [ "$TERM" == "xterm" ]
-  then filebrowser='nautilus'
-  else filebrowser='explorer'
-fi
-
-alias __rsc__vim='gvim '
 
 alias ..='cd ..'
 alias ...='cd ../../'
@@ -19,8 +13,8 @@ alias cdd='cd /c/dev/'
 alias df='cd ~/dotfiles'
 alias e='$filebrowser . &'
 alias h='cd ~'
-alias ll='ls -lAh --color'
-alias ls='ls -F --color --show-control-chars'
+alias ll='__rsc__ls_color -AFhl'
+alias la='__rsc__ls_color -F'
 alias q='exit'
 alias v='__rsc__vim'
 alias va='__rsc__vim ~/dotfiles/vim/vimrc.vim &'
