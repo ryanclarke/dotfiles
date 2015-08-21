@@ -8,20 +8,20 @@ alias ...='cd ../../'
 alias ....='cd ../../../'
 alias .....='cd ../../../../'
 alias ......='cd ../../../../../'
-alias ba='__rsc__vim ~/dotfiles/bash/bashrc.sh &'
-alias bl='__rsc__vim ~/.bashrc &'
+alias ba='__rsc__vim ~/dotfiles/bash/bash_profile.sh &'
+alias bl='__rsc__vim ~/.bash_profile
 alias c-='cd -'
 alias cdd='cd /c/dev/'
 alias df='cd ~/dotfiles'
-alias e='$filebrowser . &'
+alias e='__rsc__filebrowser . &'
 alias h='cd ~'
-alias ll='__rsc__ls_color -AFhl'
 alias la='__rsc__ls_color -F'
+alias ll='__rsc__ls_color -AFhl'
 alias q='exit'
 alias v='__rsc__vim'
 alias va='__rsc__vim ~/dotfiles/vim/vimrc.vim &'
 alias vl='__rsc__vim __rsc__vimrc'
-alias x='$filebrowser'
+alias x='__rsc__filebrowser '
 
 function cl() {
   cd $1
@@ -39,5 +39,5 @@ function ra() {
 
 function reload() {
   unalias -a 
-  source $HOME/.bashrc 1>/dev/null
+  source ~/.bash_profile 1>/dev/null
 }

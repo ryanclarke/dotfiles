@@ -35,7 +35,7 @@ function gh() {
   echo
   echo "####### LAST $commitcount COMMITS #######"
   echo
-  ghh --all | head -n $commitcount | less -E
+  ghh --all | head -n $commitcount
   echo
 }
 
@@ -47,7 +47,7 @@ function ghb() {
   echo
   echo "####### LAST $commitcount COMMITS #######"
   echo
-  ghh | head -n $commitcount | less -E
+  ghh | head -n $commitcount
   echo
 }
 
