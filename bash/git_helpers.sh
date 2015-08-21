@@ -52,7 +52,7 @@ function ghb() {
 }
 
 function gr() {
-  $filebrowser $(git config remote.origin.url | sed -e 's_:_/_' -e 's_///_\://_' -e 's_git@_https\://_')
+  __rsc__filebrowser $(git config remote.origin.url | sed -e 's_:_/_' -e 's_///_\://_' -e 's_git@_https\://_')
 }
 
 function gsave() {
