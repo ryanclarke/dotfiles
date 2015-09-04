@@ -23,7 +23,7 @@ alias la='__rsc__ls_color -F'
 alias ll='__rsc__ls_color -AFhl'
 alias q='exit'
 alias va='v ~/dotfiles/vim/vimrc.vim'
-alias vl='v __rsc__vimrc'
+alias vl='v $__rsc__vimrc'
 alias x='__rsc__filebrowser '
 
 function cl() {
