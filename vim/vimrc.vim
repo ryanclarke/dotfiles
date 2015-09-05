@@ -52,8 +52,8 @@ nnoremap <leader>ww gwip
 
 nnoremap <up> <nop>
 nnoremap <down> <nop>
-nnoremap <left> <nop>
-nnoremap <right> <nop>
+nnoremap <left> ,
+nnoremap <right> ;
 inoremap <up> <nop>
 inoremap <down> <nop>
 inoremap <left> <nop>
@@ -63,7 +63,11 @@ nnoremap k gk
 
 nnoremap ; :
 
-map <leader>n :NERDTreeToggle<CR>
+map <leader>n :e.<CR>P
+
+map <leader>x "+x
+map <leader>c "+y
+map <leader>v "+gP
 
 map <leader><up> <C-w><up>
 map <leader><down> <C-w><down>
@@ -71,7 +75,8 @@ map <leader><left> <C-w><left>
 map <leader><right> <C-w><right>
 
 map <leader>b :ls<CR>:b<space>
-map <leader>p <Esc><Esc>orequire 'pry'; binding.pry<Esc>
+map <leader>p <Esc><Esc>Orequire 'pry'; binding.pry<Esc>
+map <leader>f <Esc><Esc>gg=G<Esc>
 
 autocmd BufNewFile,BufReadPost *.md set filetype=markdown
 
