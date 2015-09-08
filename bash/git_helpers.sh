@@ -1,30 +1,15 @@
 #!/bin/sh
 
-alias g-='git checkout -'
-alias ga='git add -p'
-alias gac='git commit -am'
-alias gb='git branch -a'
-alias gc='git commit -m'
-alias gd='git diff'
-alias gdm='git diff --stat master'
-alias gdt='git difftool'
-alias gf='git fetch'
-alias ghh='git log --graph --full-history --color --pretty=format:"%Cred%h%Creset %ad %C(bold blue)<%ae>%Creset%C(yellow)%d%Creset %s" --date=short'
-alias glb='git shortlog -nes --no-merges'
-alias gk='gitk --all'
-alias gm='git checkout master'
-alias gp='git pull --rebase'
-alias grm='git rebase master'
-alias gs='git status'
-alias gt='git tag -l'
-alias gz='git checkout zzz'
+. ~/dotfiles/git/setupconfig.sh
 
 function gff() {
+  BRANCHNAME=`git currentbranch`
   if [ $BRANCHNAME != master ]; then
-    gm
+    git cm
     git merge --ff -
     gh 10
   fi
+  BRANCHNAME=
 }
 
 function gh() {
@@ -35,8 +20,9 @@ function gh() {
   echo
   echo "####### LAST $commitcount COMMITS #######"
   echo
-  ghh --all | head -n $commitcount
+  git history --all | head -n $commitcount
   echo
+  commitcount=
 }
 
 function ghb() {
@@ -47,8 +33,9 @@ function ghb() {
   echo
   echo "####### LAST $commitcount COMMITS #######"
   echo
-  ghh | head -n $commitcount
+  git history | head -n $commitcount
   echo
+  commitcount=
 }
 
 function gr() {
@@ -59,7 +46,7 @@ function gsave() {
   if [ -n "$1" ] ; then
     gac "$1"
     gum
-    grm
+    git rbm
     gh 10
   fi
 }
@@ -126,14 +113,15 @@ function gschart() {
 }
 
 function gum() {
-  BRANCHNAME=`git rev-parse --abbrev-ref HEAD`
-  if [ $BRANCHNAME != master ]; then gm; fi
-  gp
-  if [ $BRANCHNAME != master ]; then git checkout $BRANCHNAME; fi
+  BRANCHNAME=`git currentbranch`
+  if [ $BRANCHNAME != master ]; then git cm; fi
+  git up
+  if [ $BRANCHNAME != master ]; then git co $BRANCHNAME; fi
+  BRANCHNAME=
 }
 
 #returns list: username
 function gusers() {
-  git shortlog -es | sed -e 's/.*<//' -e 's/@sep.com>//'
+  git committers | sed -e 's/.*<//' -e 's/@sep.com>//'
 }
 

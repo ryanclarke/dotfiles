@@ -12,17 +12,17 @@ alias ...='cd ../../'
 alias ....='cd ../../../'
 alias .....='cd ../../../../'
 alias ......='cd ../../../../../'
-alias ba='v ~/dotfiles/bash/bash_profile.sh'
+alias ba='v $__rsc__dotfiles_dir/bash/bash_profile.sh'
 alias bl='v ~/.bash_profile'
 alias c-='cd -'
-alias cdd='cd /c/dev/'
-alias df='cd ~/dotfiles'
+alias cdd='cd $(eval echo $__rsc__dev_dir)'
+alias df='cd $(eval echo $__rsc__dotfiles_dir)'
 alias e='__rsc__filebrowser . &'
 alias h='cd ~'
 alias la='__rsc__ls_color -F'
 alias ll='__rsc__ls_color -AFhl'
 alias q='exit'
-alias va='v ~/dotfiles/vim/vimrc.vim'
+alias va='v $__rsc__dotfiles_dir/vim/vimrc.vim'
 alias vl='v $__rsc__vimrc'
 alias x='__rsc__filebrowser '
 
@@ -41,6 +41,10 @@ function ra() {
 }
 
 function reload() {
+  beforedir=$PWD
   unalias -a 
   source ~/.bash_profile 1>/dev/null
+  cd $beforedir
+  beforedir=
 }
+

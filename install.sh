@@ -2,11 +2,6 @@
 
 __rsc__os="$(uname)"
 
-function prepend() {
-  >> $2
-  sed -i -e '1i'"$1"'\' $2
-}
-
 function source_sh_scripts() {
   bash_profile_caller="if [ -f ~/dotfiles/bash/bash_profile.sh ]; then . ~/dotfiles/bash/bash_profile.sh; fi"
   echo "$bash_profile_caller" >> ~/.bash_profile
