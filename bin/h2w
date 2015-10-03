@@ -1,0 +1,66 @@
+#!/bin/bash
+
+function http_request() {
+  curl -is -H "X-H2W-Client-ID: 0" -u $1 https://h2w.cc/api/v1/$2
+}
+
+function get_token() {
+  local h2wemail
+  read -p "Enter host email for H2W user: " -e h2wemail
+  echo "$(http_request $h2wemail "auth/token" | tail -n 1 | jq -r .token)" > ~/dotfiles/.h2wtoken
+}
+
+function api() {
+  if [ ! -f ~/dotfiles/.h2wtoken ] ; then
+    get_token
+  fi
+
+  local token="$(head -n 1 ~/dotfiles/.h2wtoken):"
+  http_request $token $1
+}
+
+function quickstats() {
+  api dashboard | tail -n 1 | jq -r '
+  def prettynumber: if (. | length) > 3 then (. | tostring | split("") | .[:-3] + [","] + .[-3:] | join("")) else . end;
+  .dashboard 
+  | {
+    day: {
+      title: (.days[] | select(.is_today).abbr),
+      steps: (.today_steps | prettynumber), 
+      pct: ({steps: .today_steps, goal: [.today_step_goals[] | if (.on_track) != null then .steps else 0 end] | add} | .steps / .goal * 10000 | floor / 100 | tostring)
+    },
+    week: {
+      title: (.week_number | "week " + tostring),
+      steps: (.current_steps | prettynumber),
+      pct: (.week_full_pct * 100 | floor / 100 | tostring)
+    }
+  }
+  | {line: "\(.day.title): \(.day.steps) (\(.day.pct)%); \(.week.title): \(.week.steps) (\(.week.pct)%)"}
+  | .line'
+}
+
+case $1 in
+  dashboard)
+    api dashboard
+    ;;
+  settings)
+    api settings/goal
+    ;;
+  quickstats)
+    quickstats
+    ;;
+  deletetoken)
+    rm ~/dotfiles/.h2wtoken
+    ;;
+  *)
+    api $1
+    echo "Usage: h2w COMMAND"
+    echo " * \`h2w dashboard\`    - get dashboard json"
+    echo " * \`h2w quickstats\`   - a brief view of day and week numbers"
+    echo " * \`h2w settings\`     - points options goals"
+    echo " * \`h2w deletetoken\`  - delete h2w api token"
+    exit 1
+    ;;
+esac
+
+
