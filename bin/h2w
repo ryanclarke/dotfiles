@@ -21,7 +21,7 @@ function api() {
 
 function quickstats() {
   api dashboard | tail -n 1 | jq -r '
-  def prettynumber: if (. | length) > 3 then (. | tostring | split("") | .[:-3] + [","] + .[-3:] | join("")) else . end;
+  def prettynumber: . | tostring | if (. | length) > 3 then (. | split("") | .[:-3] + [","] + .[-3:] | join("")) else . end;
   .dashboard 
   | {
     day: {
