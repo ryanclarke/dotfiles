@@ -8,6 +8,7 @@ git config --global github.user "ryanclarke"
 # === ALIASES ===
 git config --global --remove-section alias
 
+git config --global alias.alias '!git config -l | grep alias'
 git config --global alias.aa 'add -A'
 git config --global alias.ap 'add -p'
 git config --global alias.b 'branch -a'
