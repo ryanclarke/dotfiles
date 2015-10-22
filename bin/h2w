@@ -1,27 +1,28 @@
 #!/bin/bash
 
 function http_request() {
-  curl -is -H "X-H2W-Client-ID: 0" -u $1 https://h2w.cc/api/v1/$2
+  curl -is -H "X-H2W-Client-ID: 0" -u $1 https://h2w.cc/api/v1/$2 | tail -n 1
 }
 
 function get_token() {
   local h2wemail
   read -p "Enter host email for H2W user: " -e h2wemail
-  echo "$(http_request $h2wemail "auth/token" | tail -n 1 | jq -r .token)" > ~/dotfiles/.h2wtoken
+  echo "$(http_request $h2wemail "auth/token" | jq -r .token)" > ~/dotfiles/.h2wtoken
 }
 
 function api() {
-  if [ ! -f ~/dotfiles/.h2wtoken ] ; then
-    get_token
-  fi
+  [[ ! -f ~/dotfiles/.h2wtoken ]] && get_token
 
   local token="$(head -n 1 ~/dotfiles/.h2wtoken):"
   http_request $token $1
 }
 
 function quickstats() {
-  api dashboard | tail -n 1 | jq -r '
-  def prettynumber: . | tostring | if (. | length) > 3 then (. | split("") | .[:-3] + [","] + .[-3:] | join("")) else . end;
+  api dashboard | jq -r '
+  def prettynumber: . | tostring
+  | if (. | length) > 3
+    then (. | split("") | .[:-3] + [","] + .[-3:] | join(""))
+    else . end;
   .dashboard 
   | {
     day: {
@@ -43,7 +44,7 @@ case $1 in
   dashboard)
     api dashboard
     ;;
-  settings)
+  goals)
     api settings/goal
     ;;
   quickstats)
@@ -57,7 +58,7 @@ case $1 in
     echo "Usage: h2w COMMAND"
     echo " * \`h2w dashboard\`    - get dashboard json"
     echo " * \`h2w quickstats\`   - a brief view of day and week numbers"
-    echo " * \`h2w settings\`     - points options goals"
+    echo " * \`h2w goals\`        - get points options goals"
     echo " * \`h2w deletetoken\`  - delete h2w api token"
     exit 1
     ;;
