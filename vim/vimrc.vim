@@ -6,6 +6,7 @@ set nocompatible
 set t_Co=256
 colorscheme desert
 set guifont=Consolas:h11:cDEFAULT
+set highlight CursorLine guibg=Black
 
 set relativenumber
 
