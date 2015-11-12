@@ -12,6 +12,7 @@ function __rsc__windows_vars() {
   __rsc__vimrc='~/_vimrc'
   __rsc__vim_dir='~/vimfiles'
   __rsc__dev_dir='/c/dev'
+  __rsc__to_native_path="| sed -e 's/^\///' -e 's/\//\\\\/g' -e 's/^./\0:/'" 
 }
 
 function __rsc__linux_vars() {
@@ -21,6 +22,7 @@ function __rsc__linux_vars() {
   __rsc__vimrc='~/.vimrc'
   __rsc__vim_dir='~/.vim'
   __rsc__dev_dir='~/dev'
+  __rsc__to_native_path="" 
 }
 
 function __rsc__osx_vars() {
@@ -30,6 +32,7 @@ function __rsc__osx_vars() {
   __rsc__vimrc='~/.vimrc'
   __rsc__vim_dir='~/.vim'
   __rsc__dev_dir='~/dev'
+  __rsc__to_native_path="" 
 }
 
 function __rsc__set_os() {

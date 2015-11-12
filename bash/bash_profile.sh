@@ -19,7 +19,6 @@ alias bl='v ~/.bash_profile'
 alias c-='cd -'
 alias cdd='cd $(eval echo $__rsc__dev_dir)'
 alias df='cd $(eval echo $__rsc__dotfiles_dir)'
-alias e='__rsc__filebrowser . &'
 alias la='__rsc__ls_color -F'
 alias ll='__rsc__ls_color -AFhl'
 alias q='exit'
@@ -34,6 +33,14 @@ function cl() {
 
 function cn() {
   mkdir -p "$1" && cd "$1";
+}
+
+function e() {
+  if [ -z "$1" ]; then
+    __rsc__filebrowser .
+  else
+    __rsc__filebrowser $(eval "echo $PWD/$1 $__rsc__to_native_path")
+  fi
 }
 
 function ra() {
