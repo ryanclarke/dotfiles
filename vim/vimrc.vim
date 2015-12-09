@@ -81,7 +81,9 @@ map <leader>f <Esc><Esc>gg=G<Esc>
 
 autocmd BufNewFile,BufReadPost *.md set filetype=markdown
 
-autocmd VimEnter * Helptags
-autocmd FocusLost * :wa
+if has("gui_running") 
+   autocmd VimEnter * Helptags
+   autocmd FocusLost * :wa
+endif
 
 
