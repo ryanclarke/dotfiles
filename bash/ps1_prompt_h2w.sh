@@ -33,3 +33,7 @@ function prompt_command {
 }
 export PROMPT_COMMAND=prompt_command
 
+function prompt_command_reset() {
+  h2wtimestamp=
+}
+
