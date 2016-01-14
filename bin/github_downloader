@@ -1,0 +1,29 @@
+#!/bin/bash
+
+function get_octet_stream() {
+  curl -is -H "accept: application/octet-stream" $1
+}
+
+function do_the_deed() {
+  github_user=$1
+  github_project=$2
+  asset_name=$3
+  download_path=$4
+
+  url1="$(curl -s https://api.github.com/repos/${github_user}/${github_project}/releases/latest | jq --arg asset_name ${asset_name} -r '.assets | .[] | select(.name == $asset_name) | .url')"
+  url2="$(get_octet_stream ${url1} | awk '/location/ { print $2 }')"
+  get_octet_stream ${url2} > ${download_path}
+}
+
+function print_help() {
+    echo All arguments are required. Format:
+    echo github_downloader USER PROJECT FILENAME DOWNLOADPATH
+}
+
+if [ -n "$4" ]
+    then do_the_deed $@
+    else print_help
+fi
+
+#do_the_deed stedolan jq jq-win64.exe ~/dotfiles/bin/jq.exe
+
