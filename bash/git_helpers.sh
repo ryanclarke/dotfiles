@@ -38,6 +38,13 @@ function ghb() {
   commitcount=
 }
 
+function gnew() {
+  if [ -n "$1" ]
+    then cn ${1} && git init && $(echo "# ${1}" > README.md) && $(cp $(eval echo $__rsc__dotfiles_dir)/LICENSE LICENSE) && git aa && git c "Initial commit" && echo && pwd && __rsc__ls_color -AFhl && gh 
+    else echo "Must supply a name for the repo"
+  fi
+}
+
 function gr() {
   __rsc__filebrowser $(git config remote.origin.url | sed -e 's_:_/_' -e 's_///_\://_' -e 's_git@_https\://_')
 }
