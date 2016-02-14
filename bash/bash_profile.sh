@@ -9,18 +9,21 @@ function v() {
   __rsc__vim $1 &
 }
 
+__rsc__default_editor='v'
+
 alias ..='cd ..'
 alias ...='cd ../../'
 alias ....='cd ../../../'
 alias .....='cd ../../../../'
 alias ......='cd ../../../../../'
-alias ba='v $__rsc__dotfiles_dir/bash/bash_profile.sh'
-alias bl='v ~/.bash_profile'
+alias ba='$__rsc__default_editor $__rsc__dotfiles_dir/bash/bash_profile.sh'
+alias bl='$__rsc__default_editor ~/.bash_profile'
 alias c-='cd -'
 alias cdd='cd $(eval echo $__rsc__dev_dir)'
 alias df='cd $(eval echo $__rsc__dotfiles_dir)'
 alias la='__rsc__ls_color -F'
 alias ll='__rsc__ls_color -AFhl'
+alias sa='s $__rsc__dotfiles_dir/spacemacs/spacemacs.el'
 alias q='exit'
 alias va='v $__rsc__dotfiles_dir/vim/vimrc.vim'
 alias vl='v $__rsc__vimrc'
@@ -45,6 +48,11 @@ function e() {
 function ra() {
   eval $1
   reload
+}
+
+function rb() {
+  reload
+  eval $1
 }
 
 function reload() {
