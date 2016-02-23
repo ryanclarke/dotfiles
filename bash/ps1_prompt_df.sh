@@ -27,6 +27,8 @@ function prompt_command_update_df_stats {
 }
 
 function prompt_command {
+  [[ -a ~/dotfiles/.ps1df ]] || touch ~/dotfiles/.ps1df
+
   reset="\[\033[0m\]"
   red="\[\033[31m\]"
   gray="\[\033[1;30m\]"

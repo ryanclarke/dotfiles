@@ -15,6 +15,8 @@ function prompt_command_update_h2w_stats {
 }
 
 function prompt_command {
+  [[ -a ~/dotfiles/.h2wps1 ]] || touch ~/dotfiles/.h2wps1
+
   reset="\[\033[0m\]"
   red="\[\033[31m\]"
   gray="\[\033[1;30m\]"
