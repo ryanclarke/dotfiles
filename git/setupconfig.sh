@@ -30,7 +30,7 @@ git config --global alias.email 'config --local user.email'
 git config --global alias.emailpersonal 'config --local user.email ryan@ryanclarke.net'
 git config --global alias.emailsep 'config --local user.email rsclarke@sep.com'
 git config --global alias.f 'fetch --all -p'
-git config --global alias.history 'log --graph --full-history --color --pretty=format:"%Cred%h%Creset %ad %C(bold blue)<%ae>%Creset%C(yellow)%d%Creset %s" --date=short'
+git config --global alias.history 'log --graph --full-history --color'
 git config --global alias.k '!gitk --all'
 git config --global alias.leaderboard 'shortlog -nes --no-merges'
 git config --global alias.rb 'rebase'
@@ -43,6 +43,8 @@ git config --global alias.up '!git fetch --all -p; git merge --ff-only @{u}'
 git config --global core.autocrlf true
 git config --global core.excludesfile "~/dotfiles/git/gitignore_global.txt"
 git config --global difftool.prompt false
+git config --global format.pretty "%C(red)%h%C(reset) %ad %C(bold blue)%<(19,trunc)%ae%C(reset)%C(yellow)%d%C(reset) %s"
+git config --global log.date short
 git config --global merge.ff only
 git config --global mergetool.prompt false
 git config --global pull.ff only

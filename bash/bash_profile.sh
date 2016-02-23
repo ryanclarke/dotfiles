@@ -3,6 +3,7 @@
 [[ $PATH == *"$(echo ~/dotfiles/bin)"* ]] || export PATH=$PATH:~/dotfiles/bin
 
 . ~/dotfiles/bash/os_vars.sh
+. ~/dotfiles/git/setupconfig.sh
 . ~/dotfiles/bash/git_helpers.sh
 
 function v() {
