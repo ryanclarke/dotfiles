@@ -5,7 +5,7 @@ __ps1__STATUSLENGTH="$(echo $__ps1__STATUS | wc -c)"
 
 function df_status {
     local dfs="DOTFILES -"
-    local revs="$(cd ~/dotfiles; git rev-list --left-right master...origin/master --)"
+    local revs="$(cd ~/dotfiles; git fetch --all; git rev-list --left-right master...origin/master --)"
 
     [[ $(cd ~/dotfiles; git status --short | wc -l) -gt 0 ]] && dfs="${dfs} {UNCOMMITTED}"
     [[ $(grep -c '<' <<< ${revs}) -gt 0 ]] && dfs="${dfs} {AHEAD}"
