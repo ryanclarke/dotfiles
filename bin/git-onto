@@ -1,0 +1,24 @@
+#!/bin/bash
+
+_gitdir=$(git rev-parse --git-dir)
+if [ -d "$_gitdir" ]
+then
+    if [ "$(git currentbranch)" != master ]
+    then
+        if [ -z "$(git s -s)" ]
+        then
+            git cm
+            git pull
+            git cl
+            git rbm
+            git merge --ff -
+            gh 10
+        else
+            echo "ERROR: Uncommited changes."
+        fi
+    else
+        echo "ERROR: Already on master."
+    fi
+fi
+_gitdir=
+
