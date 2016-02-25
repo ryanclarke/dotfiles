@@ -1,0 +1,11 @@
+#!/bin/bash
+
+if [ -n "${1}" ]
+  then commitcount="$1"
+  else commitcount='20'
+fi
+shift
+git history $@ | head -n $commitcount
+echo
+commitcount=
+

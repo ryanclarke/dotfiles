@@ -1,0 +1,9 @@
+#!/bin/bash
+
+if [ -n "${1}" ]
+  then commitcount="$1"
+  else commitcount='20'
+fi
+git hb ${commitcount} --all
+commitcount=
+

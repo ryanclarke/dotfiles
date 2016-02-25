@@ -12,39 +12,6 @@ function gff() {
   BRANCHNAME=
 }
 
-function gh() {
-  if [ -n "$1" ]
-    then commitcount="$1"
-    else commitcount='20'
-  fi
-  echo
-  echo "####### LAST $commitcount COMMITS #######"
-  echo
-  git history --all | head -n $commitcount
-  echo
-  commitcount=
-}
-
-function ghb() {
-  if [ -n "$1" ]
-    then commitcount="$1"
-    else commitcount='20'
-  fi
-  echo
-  echo "####### LAST $commitcount COMMITS #######"
-  echo
-  git history | head -n $commitcount
-  echo
-  commitcount=
-}
-
-function gnew() {
-  if [ -n "$1" ]
-    then cn ${1} && git init && $(echo "# ${1}" > README.md) && $(cp $(eval echo $__rsc__dotfiles_dir)/LICENSE LICENSE) && git aa && git c "Initial commit" && echo && pwd && __rsc__ls_color -AFhl && gh 
-    else echo "Must supply a name for the repo"
-  fi
-}
-
 function gr() {
   __rsc__filebrowser $(git config remote.origin.url | sed -e 's_:_/_' -e 's_///_\://_' -e 's_git@_https\://_')
 }

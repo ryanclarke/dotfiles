@@ -1,6 +1,7 @@
 #!/bin/sh
 
 [[ $PATH == *"$(echo ~/dotfiles/bin)"* ]] || export PATH=$PATH:~/dotfiles/bin
+[[ $PATH == *"$(echo ~/dotfiles/git/bin)"* ]] || export PATH=$PATH:~/dotfiles/git/bin
 
 . ~/dotfiles/bash/os_vars.sh
 . ~/dotfiles/git/setupconfig.sh
