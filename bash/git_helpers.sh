@@ -96,6 +96,6 @@ function gum() {
 
 #returns list: username
 function gusers() {
-  git committers | sed -e 's/.*<//' -e 's/@sep.com>//'
+  git committers | sed -e 's/.*<//' -e 's/>//'
 }
 
