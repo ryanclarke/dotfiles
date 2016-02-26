@@ -12,12 +12,13 @@ then
     then
         if [ -z "$(git s -s)" ]
         then
-            git co $(_branch)
+            git co ${_branch}
             git pull
             git cl
             git rb ${_branch}
+            git co ${_branch}
             git merge --ff -
-            gh 10
+            git h 10
         else
             echo "ERROR: Uncommited changes."
         fi
