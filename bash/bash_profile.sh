@@ -65,3 +65,13 @@ function reload() {
   beforedir=
 }
 
+function s() {
+    if [ -z "$1" ]
+    then
+        echo "Must supply a filename: s file.txt"
+    else
+        emacsclient -n -q -a='runemacs' $1 &!
+        disown
+    fi
+}
+
