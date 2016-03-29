@@ -2,13 +2,13 @@
 
 # === USER INFO ===
 git config --global user.name "Ryan Clarke"
-git config --global user.email "(none)"
+git config --global --unset user.email
 git config --global github.user "ryanclarke"
 
 # === ALIASES ===
 git config --global --remove-section alias
 
-git config --global alias.alias '!git config -l | grep alias'
+git config --global alias.alias '!git config -l --show-origin | grep alias'
 git config --global alias.aa 'add -A'
 git config --global alias.ap 'add -p'
 git config --global alias.b 'branch -a'
@@ -40,6 +40,7 @@ git config --global alias.t 'tag -l'
 git config --global alias.up '!git fetch --all -p; git merge --ff-only @{u}'
 
 # === SETTINGS ===
+git config --global user.useconfigonly true
 git config --global core.autocrlf true
 git config --global core.excludesfile "~/dotfiles/git/gitignore_global.txt"
 git config --global difftool.prompt false
