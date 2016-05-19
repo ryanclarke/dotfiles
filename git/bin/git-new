@@ -2,7 +2,7 @@
 
 if [ -n "$1" ]
 then
-  mkdir -p "${1}" && cd "${1}" && git init && $(echo "# ${1}" > README.md) && $(cp ~/dotfiles/LICENSE LICENSE) && git aa && git c "Initial commit" && echo && pwd && ls -AFhl && git h
+  mkdir -p "${1}" && cd "${1}" && git init && $(echo "# ${1}" > README.md) && $(cp ~/dotfiles/LICENSE LICENSE) && git aa && git emailpersonal && git c "Initial commit" && echo && pwd && ls -AFhl && git h
 else
   echo "Must supply a name for the repo"
 fi
