@@ -2,8 +2,9 @@
 
 if [ -n "${1}" ]
   then commitcount="$1"
-  else commitcount='20'
+  else commitcount="20"
 fi
-git hb ${commitcount} --all
+shift
+git hb $commitcount --all $@
 commitcount=
 

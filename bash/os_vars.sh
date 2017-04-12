@@ -5,8 +5,8 @@ function __rsc__common_vars() {
 }
 
 function __rsc__windows_vars() {
-  alias gvim='/c/bin/Vim/Vim74/gvim.exe '
-  alias __rsc__filebrowser='explorer '
+  alias gvim='/c/bin/Vim/Vim80/gvim.exe '
+  alias __rsc__filebrowser='start explorer '
   alias __rsc__ls_color='ls --color '
   alias __rsc__vim='gvim '
   __rsc__vimrc='~/_vimrc'

@@ -43,7 +43,7 @@ function e() {
   if [ -z "$1" ]; then
     __rsc__filebrowser .
   else
-    __rsc__filebrowser $(eval "echo $PWD/$1 $__rsc__to_native_path")
+    __rsc__filebrowser "$1" # $(eval "echo $PWD/$1 $__rsc__to_native_path")
   fi
 }
 

@@ -1,6 +1,7 @@
 #!/bin/sh
 
 # === USER INFO ===
+git config --global user.useconfigonly true
 git config --global user.name "Ryan Clarke"
 git config --global --unset user.email
 git config --global github.user "ryanclarke"
@@ -40,7 +41,6 @@ git config --global alias.t 'tag -l'
 git config --global alias.up '!git fetch --all -p; git merge --ff-only @{u}'
 
 # === SETTINGS ===
-git config --global user.useconfigonly true
 git config --global core.autocrlf true
 git config --global core.excludesfile "~/dotfiles/git/gitignore_global.txt"
 git config --global difftool.prompt false
@@ -50,4 +50,5 @@ git config --global merge.ff only
 git config --global mergetool.prompt false
 git config --global pull.ff only
 git config --global push.default simple
+git config --global status.showUntrackedFiles all
 

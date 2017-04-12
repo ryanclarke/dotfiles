@@ -2,10 +2,9 @@
 
 if [ -n "${1}" ]
   then commitcount="$1"
-  else commitcount='20'
+  else commitcount="15"
 fi
 shift
-git history $@ | head -n $commitcount
-echo
+git history -n ${commitcount} $@
 commitcount=
 
