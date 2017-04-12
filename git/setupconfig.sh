@@ -36,7 +36,7 @@ git config --global alias.k '!gitk --all'
 git config --global alias.leaderboard 'shortlog -nes --no-merges'
 git config --global alias.rb 'rebase'
 git config --global alias.rbm 'rebase master'
-git config --global alias.s 'status'
+git config --global alias.s 'status --short --branch'
 git config --global alias.t 'tag -l'
 git config --global alias.up '!git fetch --all -p; git merge --ff-only @{u}'
 
