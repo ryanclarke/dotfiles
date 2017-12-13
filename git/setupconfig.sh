@@ -42,7 +42,6 @@ git config --global alias.t 'tag -l'
 git config --global alias.up '!git fetch --all -p; git merge --ff-only @{u}'
 
 # === SETTINGS ===
-git config --global core.autocrlf true
 git config --global core.excludesfile "~/dotfiles/git/gitignore_global.txt"
 git config --global difftool.prompt false
 git config --global format.pretty "%C(red)%h%C(reset) %ad %C(bold blue)%<(19,trunc)%ae%C(reset)%C(yellow)%d%C(reset) %s"
