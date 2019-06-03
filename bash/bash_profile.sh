@@ -6,6 +6,7 @@
 . ~/dotfiles/bash/os_vars.sh
 . ~/dotfiles/git/setupconfig.sh
 . ~/dotfiles/bash/git_helpers.sh
+. ~/dotfiles/bash/npm-completion.bash
 
 function v() {
   __rsc__vim $1 &
