@@ -11,7 +11,7 @@ git config --global --remove-section alias
 
 git config --global alias.alias '!git config -l --show-origin | grep alias'
 git config --global alias.aa 'add -A'
-git config --global alias.amend 'commit --amend -C HEAD'
+git config --global alias.amend 'commit --amend --reset-author --no-edit'
 git config --global alias.ap 'add -p'
 git config --global alias.b 'branch -a'
 git config --global alias.currentbranch 'rev-parse --abbrev-ref HEAD'
