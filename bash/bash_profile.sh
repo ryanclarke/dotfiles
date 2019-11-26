@@ -12,7 +12,7 @@ function v() {
   __rsc__vim $1 &
 }
 
-__rsc__default_editor='v'
+__rsc__default_editor='code'
 
 alias ..='cd ..'
 alias ...='cd ../../'
