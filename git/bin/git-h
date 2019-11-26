@@ -5,6 +5,6 @@ if [ -n "${1}" ]
   else commitcount="20"
 fi
 shift
-git hb $commitcount --all $@
+git hb $commitcount --branches --remotes $@
 commitcount=
 
