@@ -1,9 +1,12 @@
-if (!(Get-Module posh-git)) { Install-Module posh-git -Scope CurrentUser }
-if (!(Get-Module oh-my-posh)) { Install-Module oh-my-posh -Scope CurrentUser }
-if (!(Get-Module PSReadLine)) { Install-Module -Name PSReadLine -AllowPrerelease -Scope CurrentUser -Force -SkipPublisherCheck }
 Import-Module posh-git
 Import-Module oh-my-posh
 Set-Theme Paradox
+
+function global:SetupProfile {
+    if (!(Get-Module posh-git)) { Install-Module posh-git -Scope CurrentUser }
+    if (!(Get-Module oh-my-posh)) { Install-Module oh-my-posh -Scope CurrentUser }
+    if (!(Get-Module PSReadLine)) { Install-Module -Name PSReadLine -AllowPrerelease -Scope CurrentUser -Force -SkipPublisherCheck }
+}
 
 function global:.. { Set-Location .. }
 function global:... { Set-Location ..\.. }
@@ -28,5 +31,3 @@ function global:gitSanitize {
 }
 
 function global:reload { & $PROFILE }
-
-Write-Output "Profile loaded"
