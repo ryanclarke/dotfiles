@@ -1,6 +1,8 @@
 Import-Module posh-git
 Import-Module oh-my-posh
-Set-Theme Paradox
+$global:ThemeSettings.MyThemesLocation = '~\dotfiles\powershell\PoshThemes'
+$global:DefaultUser = [System.Environment]::UserName
+Set-Theme ParadoxCustom
 
 function global:SetupProfile {
     if (!(Get-Module posh-git)) { Install-Module posh-git -Scope CurrentUser }
