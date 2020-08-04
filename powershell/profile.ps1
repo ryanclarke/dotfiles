@@ -4,10 +4,20 @@ $global:ThemeSettings.MyThemesLocation = '~\dotfiles\powershell\PoshThemes'
 $global:DefaultUser = [System.Environment]::UserName
 Set-Theme ParadoxCustom
 
+function global:InstallOrUpdateModule {
+    param ([string]$ModuleName)
+
+    if (!(Get-Module $ModuleName)) {
+        Install-Module -Name $ModuleName -Scope CurrentUser -Force -AllowPrerelease
+    } else {
+        Update-Module -Name $ModuleName -Scope CurrentUser -Force
+    }
+}
+
 function global:SetupProfile {
-    if (!(Get-Module posh-git)) { Install-Module posh-git -Scope CurrentUser }
-    if (!(Get-Module oh-my-posh)) { Install-Module oh-my-posh -Scope CurrentUser }
-    if (!(Get-Module PSReadLine)) { Install-Module -Name PSReadLine -AllowPrerelease -Scope CurrentUser -Force -SkipPublisherCheck }
+    InstallOrUpdateModule -ModuleName posh-git
+    InstallOrUpdateModule -ModuleName oh-my-posh
+    InstallOrUpdateModule -ModuleName PSReadLine
 }
 
 function global:.. { Set-Location .. }
