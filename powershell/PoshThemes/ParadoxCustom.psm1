@@ -28,7 +28,9 @@ function Write-Theme {
         $prompt += Write-Prompt -Object "$user@$computer " -ForegroundColor $sl.Colors.SessionInfoForegroundColor -BackgroundColor $sl.Colors.SessionInfoBackgroundColor
     }
     else {
-        $clockEmoji = [char]::ConvertFromUtf32(128335 + $((Get-Date).ToString('hh')) + $((Get-Date).Minute -ge 30 ? 12 : 0))
+        $hour = (Get-Date).ToString('hh')
+        if ((Get-Date).Minute -ge 30) { $halfhour = 12 } else { $halfhour = 0 }
+        $clockEmoji = [char]::ConvertFromUtf32(128335 + $hour + $halfhour)
         $prompt += Write-Prompt -Object "$clockEmoji" -ForegroundColor $sl.Colors.SessionInfoForegroundColor -BackgroundColor $sl.Colors.SessionInfoBackgroundColor
     }
 
