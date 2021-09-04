@@ -1,8 +1,7 @@
 Import-Module posh-git
 Import-Module oh-my-posh
-$global:ThemeSettings.MyThemesLocation = '~\dotfiles\powershell\PoshThemes'
 $global:DefaultUser = [System.Environment]::UserName
-Set-Theme ParadoxCustom
+Set-PoshPrompt -Theme Paradox
 
 function global:InstallOrUpdateModule {
     param ([string]$ModuleName)
@@ -26,7 +25,7 @@ function global:.... { Set-Location ..\..\.. }
 
 function global:cdd { Set-Location c:\dev }
 function global:psg { code $HOME\dotfiles\powershell\profile.ps1 }
-function global:psl { code $PROFILE }
+function global:psl { code $PROFILE.CurrentUserAllHosts }
 function global:vars { gci env:* | sort-object name }
 
 function global:gitH { git log --graph --full-history --color --branches --remotes }
@@ -42,4 +41,4 @@ function global:gitSanitize {
     }
 }
 
-function global:reload { & $PROFILE }
+function global:reload { & $PROFILE.CurrentUserAllHosts }

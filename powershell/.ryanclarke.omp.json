@@ -1,0 +1,99 @@
+{
+  "$schema": "https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json",
+  "blocks": [
+    {
+      "alignment": "left",
+      "newline": true,
+      "segments": [
+        {
+          "background": "#ff0000",
+          "foreground": "#ffffff",
+          "leading_diamond": "<#ffffff,#ff0000>  </><#ff0000,#bb0000> </>",
+          "trailing_diamond": "<#ff0000,#bb0000> </><#ffffff,#ff0000>  </>",
+          "properties": {
+            "always_numeric": true,
+            "prefix": " ERROR - CODE "
+          },
+          "style": "diamond",
+          "type": "exit"
+        }
+      ],
+      "type": "prompt"
+    },
+    {
+      "alignment": "left",
+      "newline": true,
+      "segments": [
+        {
+          "background": "#ffff00",
+          "foreground": "#000000",
+          "powerline_symbol": "",
+          "style": "powerline",
+          "type": "root"
+        },
+        {
+          "background": "#bbbbbb",
+          "foreground": "#000000",
+          "powerline_symbol": "",
+          "properties": {
+            "enable_hyperlink": true,
+            "folder_icon": "",
+            "folder_separator_icon": "  ",
+            "home_icon": "🏡",
+            "mapped_locations": {
+              "C:\\dev": "</>"
+            },
+            "style": "agnoster_full"
+          },
+          "style": "powerline",
+          "type": "path"
+        },
+        {
+          "background": "#ff8800",
+          "foreground": "#000000",
+          "powerline_symbol": "",
+          "style": "powerline",
+          "type": "git"
+        },
+        {
+          "background": "#0088ff",
+          "foreground": "#000000",
+          "powerline_symbol": "",
+          "properties": {
+            "prefix": " "
+          },
+          "style": "powerline",
+          "type": "python"
+        },
+        {
+          "background": "#0088ff",
+          "foreground": "#000000",
+          "powerline_symbol": "",
+          "properties": {
+            "prefix": " "
+          },
+          "style": "powerline",
+          "type": "dotnet"
+        }
+      ],
+      "type": "prompt"
+    },
+    {
+      "alignment": "left",
+      "newline": true,
+      "segments": [
+        {
+          "foreground": "#ffffff",
+          "properties": {
+            "prefix": "",
+            "text": "<#bbbbbb>❯</><#ff8800>❯</><#0088ff>❯</>"
+          },
+          "style": "plain",
+          "type": "text"
+        }
+      ],
+      "type": "prompt"
+    }
+  ],
+  "final_space": false
+}
